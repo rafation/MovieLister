@@ -14,14 +14,21 @@ export class HomePageComponent implements OnInit{
     Poster: ''
   }
 
-  constructor(private service:FetchDataService){}
 
-  ngOnInit(): void {
-      this.getMovie('Batman Begins')
+  constructor(private service:FetchDataService){
   }
 
+  ngOnInit(): void {
+    
+    this.getMovie(this.inputName)
+    }
+
+
+  inputName: string='Blade Runner 2049'
+
   getMovie(searchName:string){
-    this.service.getMovie(searchName).subscribe(
+    searchName = this.inputName
+    this.service.getMovie(this.inputName).subscribe( 
       {
         next: (res) => {
           this.movie = {
@@ -32,5 +39,4 @@ export class HomePageComponent implements OnInit{
       }
     )
   }
-
 }
